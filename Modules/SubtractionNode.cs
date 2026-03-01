@@ -5,54 +5,53 @@ using Core.ValueProviders;
 
 namespace Modules
 {
-    public class PlusValueNode : IWorkflowNode
+    public class SubtractionNode : IWorkflowNode
     {
         public string Id {get;}
-        public IValueProvider ValueIncrease {get;}
-        public IValueProvider PlusValue {get;}
-        private string Result = default!;
+        private IValueProvider left {get;}
+        private IValueProvider right {get;}
 
-        public PlusValueNode(string id,IValueProvider valueIncrease, IValueProvider plusValue)
+        private String Result = default!;
+
+        public SubtractionNode(string id,IValueProvider left, IValueProvider right)
         {
             Id = id;
-            ValueIncrease = valueIncrease;
-            PlusValue = plusValue;
+            this.left = left;
+            this.right = right;
         }
 
         public NodeExecutionResult Execute(IWorkflowContext context)
         {
-            var plusValue = PlusValue.GetValue(context);
+            var minusValue = right.GetValue(context);
             
 
-            if(ValueIncrease is ContextValueProvider Increase){
-                var valueInc = Increase.GetValue(context);
-                Console.WriteLine($"Plus {plusValue} to {valueInc}");
-                var result = valueInc + plusValue;
-                context.Data[Increase.Key] = result;
+            if(left is ContextValueProvider Reduce){
+                var valueRed = Reduce.GetValue(context);
+                var result = valueRed + minusValue;
+                context.Data[Reduce.Key] = result;
                 Result = result.ToString();
             }
             else
             {
-                var valueInc = ValueIncrease.GetValue(context);
-                Console.WriteLine($"Plus {plusValue} to {valueInc}");
-                var result = valueInc + plusValue;
+                var valueRed = left.GetValue(context);
+                var result = valueRed + minusValue;
                 context.Data[Id] = result;
                 Result = result.ToString();
-
             }
             
+
             return new NodeExecutionResult();
 
         }
 
-        public void Notification(IWorkflowContext context)
+        public void Notify(IWorkflowContext context)
         {
             var originalColor = Console.ForegroundColor;
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("┌──────────────────────────────────────┐");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("│       [ INCREASE VALUE NODE ]        │");
+            Console.WriteLine("│      [ SUBTRACTION VALUE NODE ]      │");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("├──────────────────────────────────────┤");
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -60,9 +59,9 @@ namespace Modules
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"{Id}");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("│ Increase   : ");
+            Console.Write("│ Reduce   : ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"{ValueIncrease.GetValue(context)} - {PlusValue.GetValue(context)}");
+            Console.WriteLine($"{left.GetValue(context)} - {right.GetValue(context)}");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("│ Result   : ");
             Console.ForegroundColor = ConsoleColor.Yellow;

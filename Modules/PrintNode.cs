@@ -6,7 +6,7 @@ namespace Modules
     public class PrintNode : IWorkflowNode
     {
         public string Id {get;}
-        public IValueProvider ValueProvider {get;}
+        private IValueProvider ValueProvider {get;}
 
         public PrintNode(string id, IValueProvider valueProvider)
         {
@@ -20,7 +20,7 @@ namespace Modules
             return new NodeExecutionResult();
         }
 
-        public void Notification(IWorkflowContext context)
+        public void Notify(IWorkflowContext context)
         {
             var originalColor = Console.ForegroundColor;
 

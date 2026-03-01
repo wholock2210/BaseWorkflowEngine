@@ -17,7 +17,7 @@ namespace Modules
             return new NodeExecutionResult();
         }
 
-        public void Notification(IWorkflowContext context)
+        public void Notify(IWorkflowContext context)
         {
             var originalColor = Console.ForegroundColor;
 

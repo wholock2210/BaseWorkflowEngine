@@ -28,7 +28,7 @@ namespace Core.Engine
                 Console.WriteLine("\t\t\\/");
                 Console.ForegroundColor = originalColor;
 
-                node.Notification(context);
+                node.Notify(context);
 
 
 

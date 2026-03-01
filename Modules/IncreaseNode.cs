@@ -7,7 +7,7 @@ namespace Modules
     public class IncreaseNode : IWorkflowNode
     {
         public string Id {get;}
-        public IValueProvider ValueIncrease {get;} 
+        private IValueProvider ValueIncrease {get;} 
         private String Result = default!;
 
         public IncreaseNode(string id, IValueProvider valueIncrease)
@@ -36,7 +36,7 @@ namespace Modules
             return new NodeExecutionResult();
         }
 
-        public void Notification(IWorkflowContext context)
+        public void Notify(IWorkflowContext context)
         {
             var originalColor = Console.ForegroundColor;
 

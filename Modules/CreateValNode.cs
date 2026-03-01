@@ -8,8 +8,8 @@ namespace Modules
     public class CreateValNode : IWorkflowNode
     {
         public string Id {get;}
-        public string ValueName {get;}
-        public string Value{get;}
+        private string ValueName {get;}
+        private string Value{get;}
 
         public CreateValNode(string id,string valueName, string value)
         {

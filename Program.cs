@@ -39,7 +39,7 @@ class Program
                     )
                 )
             ),
-            ["into-loop"] = new NothingNode("into-loop"),
+            ["into-loop"] = new NoOperationNode("into-loop"),
             ["inc-a"] = new IncreaseNode("inc-a",new ContextValueProvider("X")),
             ["exit-loop"] = new PrintNode("exit-loop", new ContextValueProvider("X")),
             ["end"] = new EndNode("end", "ket thuc chuong trinh")

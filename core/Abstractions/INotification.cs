@@ -4,6 +4,6 @@ namespace core.Abstractions
 {
     public interface INotification
     {
-        void Notification(IWorkflowContext context);
+        void Notify(IWorkflowContext context);
     }
 }

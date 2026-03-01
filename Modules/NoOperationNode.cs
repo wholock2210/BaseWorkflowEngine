@@ -3,11 +3,11 @@ using Core.Models;
 
 namespace Modules
 {
-    public class NothingNode : IWorkflowNode
+    public class NoOperationNode : IWorkflowNode
     {
         public string Id {get;}
 
-        public NothingNode(string id)
+        public NoOperationNode(string id)
         {
             Id = id;
         }
@@ -17,7 +17,7 @@ namespace Modules
             return new NodeExecutionResult();
         }
 
-        public void Notification(IWorkflowContext context)
+        public void Notify(IWorkflowContext context)
         {
         }
     }
