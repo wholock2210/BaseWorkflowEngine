@@ -1,5 +1,5 @@
 
 #temp 
-./bin
-./obj
-./test.json
+/bin/
+/obj/
+test.json
