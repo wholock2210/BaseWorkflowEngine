@@ -1,5 +1,6 @@
 
 #temp 
-/bin/
-/obj/
+bin/
+obj/
+.vscode/
 test.json
