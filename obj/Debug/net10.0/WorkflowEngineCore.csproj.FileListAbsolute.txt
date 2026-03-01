@@ -1,0 +1,14 @@
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/bin/Debug/net10.0/WorkflowEngineCore
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/bin/Debug/net10.0/WorkflowEngineCore.deps.json
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/bin/Debug/net10.0/WorkflowEngineCore.runtimeconfig.json
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/bin/Debug/net10.0/WorkflowEngineCore.dll
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/bin/Debug/net10.0/WorkflowEngineCore.pdb
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/WorkflowEngineCore.GeneratedMSBuildEditorConfig.editorconfig
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/WorkflowEngineCore.AssemblyInfoInputs.cache
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/WorkflowEngineCore.AssemblyInfo.cs
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/WorkflowEngineCore.csproj.CoreCompileInputs.cache
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/WorkflowEngineCore.dll
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/refint/WorkflowEngineCore.dll
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/WorkflowEngineCore.pdb
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/WorkflowEngineCore.genruntimeconfig.cache
+/home/wholock/Projects/CSharp/Console/WorkflowEngineCore/obj/Debug/net10.0/ref/WorkflowEngineCore.dll

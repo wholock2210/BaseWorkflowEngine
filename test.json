@@ -1,0 +1,158 @@
+{
+  "name": "Untitled Workflow",
+  "version": "1.0",
+  "createdAt": "2026-02-06T07:49:14.765Z",
+  "updatedAt": "2026-02-06T07:49:14.765Z",
+  "metadata": {
+    "moduleCount": 4,
+    "connectionCount": 3
+  },
+  "executionOrder": [
+    "module_1770364090662_vd09dsyh4",
+    "module_1770364065262_ztcnt6e24",
+    "module_1770364077146_i6m0kr5yd",
+    "module_1770364067650_61g5v3nxk"
+  ],
+  "modules": [
+    {
+      "id": "module_1770364065262_ztcnt6e24",
+      "type": "loop",
+      "name": "Loop",
+      "position": {
+        "x": 441,
+        "y": 254
+      },
+      "inputs": [
+        {
+          "id": "in",
+          "name": "Input",
+          "connected": true
+        }
+      ],
+      "outputs": [
+        {
+          "id": "loop",
+          "name": "Loop →",
+          "connected": true
+        },
+        {
+          "id": "exit",
+          "name": "Exit ↓",
+          "connected": true
+        }
+      ],
+      "config": {
+        "loopType": "forEach",
+        "dataSource": "{{result}}",
+        "itemVariable": "item",
+        "indexVariable": "index",
+        "maxIterations": "1000"
+      }
+    },
+    {
+      "id": "module_1770364067650_61g5v3nxk",
+      "type": "end",
+      "name": "End",
+      "position": {
+        "x": 825,
+        "y": 502
+      },
+      "inputs": [
+        {
+          "id": "in",
+          "name": "End",
+          "connected": true
+        }
+      ],
+      "outputs": [],
+      "config": {
+        "status": "success",
+        "message": ""
+      }
+    },
+    {
+      "id": "module_1770364077146_i6m0kr5yd",
+      "type": "connect",
+      "name": "DB Connect",
+      "position": {
+        "x": 215,
+        "y": 550
+      },
+      "inputs": [
+        {
+          "id": "in",
+          "name": "Input",
+          "connected": true
+        }
+      ],
+      "outputs": [
+        {
+          "id": "out",
+          "name": "Output",
+          "connected": false
+        }
+      ],
+      "config": {
+        "dbType": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "database": "",
+        "username": "",
+        "password": ""
+      }
+    },
+    {
+      "id": "module_1770364090662_vd09dsyh4",
+      "type": "init",
+      "name": "Start",
+      "position": {
+        "x": 160,
+        "y": 47
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "id": "out",
+          "name": "Start",
+          "connected": true
+        }
+      ],
+      "config": {
+        "triggerType": "manual",
+        "schedule": ""
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from": {
+        "moduleId": "module_1770364065262_ztcnt6e24",
+        "nodeId": "loop"
+      },
+      "to": {
+        "moduleId": "module_1770364077146_i6m0kr5yd",
+        "nodeId": "in"
+      }
+    },
+    {
+      "from": {
+        "moduleId": "module_1770364065262_ztcnt6e24",
+        "nodeId": "exit"
+      },
+      "to": {
+        "moduleId": "module_1770364067650_61g5v3nxk",
+        "nodeId": "in"
+      }
+    },
+    {
+      "from": {
+        "moduleId": "module_1770364090662_vd09dsyh4",
+        "nodeId": "out"
+      },
+      "to": {
+        "moduleId": "module_1770364065262_ztcnt6e24",
+        "nodeId": "in"
+      }
+    }
+  ]
+}
