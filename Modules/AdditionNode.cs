@@ -26,7 +26,6 @@ namespace Modules
 
             if(left is ContextValueProvider Increase){
                 var valueInc = Increase.GetValue(context);
-                Console.WriteLine($"Plus {plusValue} to {valueInc}");
                 var result = valueInc + plusValue;
                 context.Data[Increase.Key] = result;
                 Result = result.ToString();
@@ -34,7 +33,6 @@ namespace Modules
             else
             {
                 var valueInc = left.GetValue(context);
-                Console.WriteLine($"Plus {plusValue} to {valueInc}");
                 var result = valueInc + plusValue;
                 context.Data[Id] = result;
                 Result = result.ToString();
