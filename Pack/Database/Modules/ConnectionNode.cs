@@ -1,28 +1,39 @@
 
-
 using Core.Abstractions;
 using Core.Models;
+using Pack.Database;
+using Pack.Database.Utilities;
 
-namespace Modules
+namespace Pack.Database.Modules
 {
-    public class CreateValNode : IWorkflowNode
+    public class ConnectionNode : IWorkflowNode
     {
         public string Id {get;}
-        private string ValueName {get;}
-        private IValueProvider Value {get;}
+        private String MessageResult = default!;
 
-        public CreateValNode(string id,string valueName, IValueProvider value)
+        public ConnectionNode(string id, string connectionString)
         {
             Id = id;
-            ValueName = valueName;
-            Value = value;
+            Connection.connectionString = connectionString;
         }
 
         public NodeExecutionResult Execute(IWorkflowContext context)
         {
-
-            context.Data[ValueName] = Value.GetValue(context);
-            return new NodeExecutionResult();
+            var isConnected = Connection.GetConnection();
+            if (isConnected)
+            {
+                MessageResult = "kết nối thành công đến database";
+                return new NodeExecutionResult();
+            }
+            else
+            {
+                MessageResult = "kết nối thất bại vui lòng kiểm tra lại kết nối";
+                return new NodeExecutionResult
+                {
+                    IsCallBack = true
+                };
+            }
+            
         }
 
         public void Notify(IWorkflowContext context)
@@ -32,7 +43,7 @@ namespace Modules
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("┌──────────────────────────────────────┐");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("│        [ CREATE VALUE NODE ]         │");
+            Console.WriteLine("│           [ CONNECTION NODE]         │");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("├──────────────────────────────────────┤");
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -40,13 +51,9 @@ namespace Modules
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"{Id}");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("│ Key   : ");
+            Console.Write("│ status   : ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"{ValueName}");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("│ Value : ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"{Value}");
+            Console.WriteLine($"{MessageResult}");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("└──────────────────────────────────────┘");
             Console.ForegroundColor = originalColor;

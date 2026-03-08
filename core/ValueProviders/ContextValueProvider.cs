@@ -2,7 +2,7 @@ using Core.Abstractions;
 
 namespace Core.ValueProviders
 {
-    public class ContextValueProvider : IValueProvider
+    public class ContextValueProvider : IValueProvider<int>
     {
         public string Key {get;}
 

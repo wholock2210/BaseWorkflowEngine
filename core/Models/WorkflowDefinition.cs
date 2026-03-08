@@ -14,4 +14,4 @@ namespace Core.Models
             )?.To;
         }
     }
-}
+}   

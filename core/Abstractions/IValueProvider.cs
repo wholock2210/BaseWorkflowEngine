@@ -1,7 +1,7 @@
 namespace Core.Abstractions
 {
-    public interface IValueProvider
+    public interface IValueProvider<T>
     {
-        int GetValue(IWorkflowContext context);
+        T GetValue(IWorkflowContext context);
     }
 }

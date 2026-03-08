@@ -5,14 +5,14 @@ using Core.ValueProviders;
 
 namespace Modules
 {
-    public class AdditionNode : IWorkflowNode
+    public class AdditionNode<T> : IWorkflowNode
     {
         public string Id {get;}
-        private IValueProvider left {get;}
-        private IValueProvider right {get;}
+        private IValueProvider<T> left {get;}
+        private IValueProvider<T> right {get;}
         private string Result = default!;
 
-        public AdditionNode(string id,IValueProvider left, IValueProvider right)
+        public AdditionNode(string id,IValueProvider<T> left, IValueProvider<T> right)
         {
             Id = id;
             this.left = left;

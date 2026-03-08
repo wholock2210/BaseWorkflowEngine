@@ -4,6 +4,8 @@ using Modules;
 using Core.Models;
 using Core.Context;
 using Core.ValueProviders;
+using Pack;
+using Core.Conditions;
 
 class Program
 {
@@ -14,35 +16,19 @@ class Program
             StartNodeId = "init",
             Connections = new List<ConnectionDefinition>
             {
-                new() { From = "init", To = "val-a" },
-                new() { From = "val-a", To = "val-b" },
-                new() { From = "val-b", To = "loop"},
-                new() { From = "loop", To = "into-loop", Branch = "loop" },
-                new() { From = "loop", To = "exit-loop", Branch = "exit" },
-                new() { From = "into-loop", To = "inc-a"},
-                new() { From = "inc-a" , To = "loop"},
-                new() { From = "exit-loop", To = "end"}
+                new() { From = "init", To = "connect" },
+                new() { From = "connect", To = "if"},
+                new() { From = "if", To = "connect-success", Branch = "true"},
+                new() { From = "if", To = "connect-failed", Branch = "false"},
+                new() { From = "connect-success", To = "end-success"},
+                new() { From = "connect-failed", To = "end-failed"},
             }
         };
 
         var nodes = new Dictionary<string, IWorkflowNode>
         {
             ["init"] = new InitNode("init"),
-            ["val-a"] = new CreateValNode("val-a","X","15"),
-            ["val-b"] = new CreateValNode("val-b","Y","10"),
-            ["loop"] = new LoopNode("loop", new IfNode(
-                        "ifloop",
-                        new Core.Conditions.CompareCondition(
-                        new ContextValueProvider("X"),
-                        new ConstantValueProvider(16),
-                        Core.Conditions.CompareOperator.LessOfEqual
-                    )
-                )
-            ),
-            ["into-loop"] = new NoOperationNode("into-loop"),
-            ["inc-a"] = new IncreaseNode("inc-a",new ContextValueProvider("X")),
-            ["exit-loop"] = new PrintNode("exit-loop", new ContextValueProvider("X")),
-            ["end"] = new EndNode("end", "ket thuc chuong trinh")
+            ["connect"] = new Pack.Database.Modules.ConnectionNode("init", "Server=127.0.0.1;User ID=wholock;Password=221004;Database=OtoParking;"),
         };
 
         var context = new WorkflowContext();
