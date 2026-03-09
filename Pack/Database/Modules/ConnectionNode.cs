@@ -19,7 +19,8 @@ namespace Pack.Database.Modules
 
         public NodeExecutionResult Execute(IWorkflowContext context)
         {
-            var isConnected = Connection.GetConnection();
+            context.Data["currentNode"] = Id;
+            var isConnected = Connection.GetConnection(context);
             if (isConnected.Item1)
             {
                 MessageResult = isConnected.Item2;
