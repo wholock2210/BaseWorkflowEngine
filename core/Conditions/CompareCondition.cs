@@ -36,6 +36,14 @@ namespace Core.Conditions
                     _ => throw new NotSupportedException()
                 };
             }
+            else if(l is Boolean Lb && r is Boolean Rb){
+                return Operator switch
+                {
+                    CompareOperator.Equal => Lb == Rb,
+                    CompareOperator.Difference => Lb != Rb,
+                    _ => throw new NotSupportedException()
+                };
+            }
             else
             {
                 return false;
