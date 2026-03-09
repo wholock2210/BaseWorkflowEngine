@@ -26,17 +26,22 @@ namespace Modules
 
             if(left is ContextValueProvider Increase){
                 var valueInc = Increase.GetValue(context);
-                var result = valueInc + plusValue;
-                context.Data[Increase.Key] = result;
-                Result = result.ToString();
+                if(valueInc is int leftInt && plusValue is int RightInt)
+                {
+                    var result = leftInt + RightInt;
+                    context.Data[Increase.Key] = result;
+                    Result = result.ToString();
+                }
             }
             else
             {
                 var valueInc = left.GetValue(context);
-                var result = valueInc + plusValue;
-                context.Data[Id] = result;
-                Result = result.ToString();
-
+                if(valueInc is int leftInt && plusValue is int rightInt)
+                {
+                    var result = leftInt + rightInt;
+                    context.Data[Id] = result;
+                    Result = result.ToString();
+                }
             }
             
             return new NodeExecutionResult();

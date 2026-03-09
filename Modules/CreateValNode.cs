@@ -5,13 +5,13 @@ using Core.Models;
 
 namespace Modules
 {
-    public class CreateValNode : IWorkflowNode
+    public class CreateValNode<T> : IWorkflowNode
     {
         public string Id {get;}
         private string ValueName {get;}
-        private IValueProvider Value {get;}
+        private IValueProvider<T> Value {get;}
 
-        public CreateValNode(string id,string valueName, IValueProvider value)
+        public CreateValNode(string id,string valueName, IValueProvider<T> value)
         {
             Id = id;
             ValueName = valueName;
