@@ -4,13 +4,13 @@ using Core.ValueProviders;
 
 namespace Modules
 {
-    public class IncreaseNode : IWorkflowNode
+    public class IncreaseNode<T> : IWorkflowNode
     {
-        public string Id {get;}
-        private IValueProvider ValueIncrease {get;} 
+        public string Id { get; }
+        private IValueProvider<T> ValueIncrease { get; }
         private String Result = default!;
 
-        public IncreaseNode(string id, IValueProvider valueIncrease)
+        public IncreaseNode(string id, IValueProvider<T> valueIncrease)
         {
             Id = id;
             ValueIncrease = valueIncrease;
@@ -18,18 +18,25 @@ namespace Modules
 
         public NodeExecutionResult Execute(IWorkflowContext context)
         {
-            if(ValueIncrease is ContextValueProvider Increase){
+            if (ValueIncrease is ContextValueProvider Increase)
+            {
                 var valueInc = Increase.GetValue(context);
-                var result = valueInc + 1;
-                context.Data[Increase.Key] = result;
-                Result = result.ToString();
+                if (valueInc is int leftInt)
+                {
+                    var result = leftInt + 1;
+                    context.Data[Increase.Key] = result;
+                    Result = result.ToString();
+                }
             }
             else
             {
                 var valueInc = ValueIncrease.GetValue(context);
-                var result = valueInc + 1;
-                context.Data[Id] = result;
-                Result = result.ToString();
+                if (valueInc is int leftInt)
+                {
+                    var result = leftInt + 1;
+                    context.Data[Id] = result;
+                    Result = result.ToString();
+                }
 
             }
 

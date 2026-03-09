@@ -5,13 +5,13 @@ using Core.Models;
 
 namespace Modules
 {
-    public class LoopNode : IWorkflowNode
+    public class LoopNode<T> : IWorkflowNode
     {
         public string Id {get;}
-        private readonly IfNode CONDITION;
+        private readonly IfNode<T> CONDITION;
         private string Branch = default!;
 
-        public LoopNode(string id,IfNode condition)
+        public LoopNode(string id,IfNode<T> condition)
         {
             Id = id;
             CONDITION = condition;

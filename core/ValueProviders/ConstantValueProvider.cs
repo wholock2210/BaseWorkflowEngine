@@ -2,7 +2,7 @@ using Core.Abstractions;
 
 namespace Core.ValueProviders
 {
-    public class ConstantValueProvider : IValueProvider
+    public class ConstantValueProvider : IValueProvider<int>
     {
         public int Value {get;}
 

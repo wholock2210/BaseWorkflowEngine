@@ -3,12 +3,12 @@ using Core.Models;
 
 namespace Modules
 {
-    public class PrintNode : IWorkflowNode
+    public class PrintNode<T> : IWorkflowNode
     {
         public string Id {get;}
-        private IValueProvider ValueProvider {get;}
+        private IValueProvider<T> ValueProvider {get;}
 
-        public PrintNode(string id, IValueProvider valueProvider)
+        public PrintNode(string id, IValueProvider<T> valueProvider)
         {
             Id = id;
             ValueProvider = valueProvider;

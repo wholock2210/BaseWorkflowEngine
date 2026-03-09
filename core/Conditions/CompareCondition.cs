@@ -2,15 +2,15 @@ using Core.Abstractions;
 
 namespace Core.Conditions
 {
-    public class CompareCondition : ICondition
+    public class CompareCondition<T> : ICondition
     {
-        public IValueProvider Left {get;}
-        public IValueProvider Right {get;}
-        public CompareOperator Operator {get;}
+        public IValueProvider<T> Left { get; }
+        public IValueProvider<T> Right { get; }
+        public CompareOperator Operator { get; }
 
         public CompareCondition(
-            IValueProvider left, 
-            IValueProvider right,
+            IValueProvider<T> left,
+            IValueProvider<T> right,
             CompareOperator op)
         {
             Left = left;
@@ -23,18 +23,23 @@ namespace Core.Conditions
             var l = Left.GetValue(context);
             var r = Right.GetValue(context);
 
-
-            return Operator switch
+            if (l is int L && r is int R)
             {
-                CompareOperator.GreaterThan => l > r,
-                CompareOperator.LessThan => l < r,
-                CompareOperator.Equal => l == r,
-                CompareOperator.GreaterOfEqual => l >= r,
-                CompareOperator.LessOfEqual => l <= r,
-                CompareOperator.Difference => l != r,
-                _ => throw new NotSupportedException()
-            };
-
+                return Operator switch
+                {
+                    CompareOperator.GreaterThan => L > R,
+                    CompareOperator.LessThan => L < R,
+                    CompareOperator.Equal => L == R,
+                    CompareOperator.GreaterOfEqual => L >= R,
+                    CompareOperator.LessOfEqual => L <= R,
+                    CompareOperator.Difference => L != R,
+                    _ => throw new NotSupportedException()
+                };
+            }
+            else
+            {
+                return false;
+            }
 
         }
     }

@@ -4,13 +4,13 @@ using Core.Models;
 
 namespace Modules
 {
-    public class IfNode : IWorkflowNode
+    public class IfNode<T> : IWorkflowNode
     {
         public string Id {get;}
-        private readonly CompareCondition CONDITION;
+        private readonly CompareCondition<T> CONDITION;
         private string Result = default!;
 
-        public IfNode(string id, CompareCondition condition)
+        public IfNode(string id, CompareCondition<T> condition)
         {
             Id = id;
             CONDITION = condition;
