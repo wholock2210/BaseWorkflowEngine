@@ -6,7 +6,9 @@
   
   It operates using node module packages.
   
-  Currently, only basic nodes are available.</p>
+  Currently, only basic nodes are available.
+  
+  Future support will include additional database processing module packs.</p>
 
   <h3>Class Diagram</h3>
 
