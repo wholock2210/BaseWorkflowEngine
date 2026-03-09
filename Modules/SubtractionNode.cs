@@ -5,15 +5,15 @@ using Core.ValueProviders;
 
 namespace Modules
 {
-    public class SubtractionNode : IWorkflowNode
+    public class SubtractionNode<T> : IWorkflowNode
     {
         public string Id {get;}
-        private IValueProvider left {get;}
-        private IValueProvider right {get;}
+        private IValueProvider<T> left {get;}
+        private IValueProvider<T> right {get;}
 
         private String Result = default!;
 
-        public SubtractionNode(string id,IValueProvider left, IValueProvider right)
+        public SubtractionNode(string id,IValueProvider<T> left, IValueProvider<T> right)
         {
             Id = id;
             this.left = left;
@@ -27,16 +27,22 @@ namespace Modules
 
             if(left is ContextValueProvider Reduce){
                 var valueRed = Reduce.GetValue(context);
-                var result = valueRed + minusValue;
-                context.Data[Reduce.Key] = result;
-                Result = result.ToString();
+                if (valueRed is int leftInt && minusValue is int rightInt)
+                {
+                    var result = leftInt + rightInt;
+                    context.Data[Reduce.Key] = result;
+                    Result = result.ToString();
+                }
             }
             else
             {
                 var valueRed = left.GetValue(context);
-                var result = valueRed + minusValue;
-                context.Data[Id] = result;
-                Result = result.ToString();
+                if (valueRed is int leftInt && minusValue is int rightInt)
+                {
+                    var result = leftInt + rightInt;
+                    context.Data[Id] = result;
+                    Result = result.ToString();
+                }
             }
             
 
