@@ -28,7 +28,7 @@ class Program
         var nodes = new Dictionary<string, IWorkflowNode>
         {
             ["init"] = new InitNode("init"),
-            ["connect"] = new Pack.Database.Modules.ConnectionNode("init", "Server=127.0.0.1;User ID=wholock;Password=221004;Database=OtoParking;"),
+            ["connect"] = new Pack.Database.Modules.ConnectionNode("init", "Server=127.0.0.1;User ID=wholock;Password=2210042;Database=OtoParking;"),
         };
 
         var context = new WorkflowContext();

@@ -20,14 +20,14 @@ namespace Pack.Database.Modules
         public NodeExecutionResult Execute(IWorkflowContext context)
         {
             var isConnected = Connection.GetConnection();
-            if (isConnected)
+            if (isConnected.Item1)
             {
-                MessageResult = "kết nối thành công đến database";
+                MessageResult = isConnected.Item2;
                 return new NodeExecutionResult();
             }
             else
             {
-                MessageResult = "kết nối thất bại vui lòng kiểm tra lại kết nối";
+                MessageResult = isConnected.Item2;
                 return new NodeExecutionResult
                 {
                     IsCallBack = true

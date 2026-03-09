@@ -8,21 +8,21 @@ namespace Pack.Database.Utilities
     {
         public static string connectionString {get;set;} = default!;
 
-        public static bool GetConnection()
+        public static (bool, string) GetConnection()
         {
             if (String.IsNullOrEmpty(connectionString))
-                return false;
+                return (false, "please add connection string");
             try
             {
                 using(var connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
                 }
-                return true;
+                return (true, "connected");
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return (false, "connect error : " + ex.Message);
             }  
         }
     }
