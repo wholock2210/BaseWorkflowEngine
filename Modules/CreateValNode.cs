@@ -7,11 +7,11 @@ namespace Modules
 {
     public class CreateValNode<T> : IWorkflowNode
     {
-        public string Id {get;}
-        private string ValueName {get;}
-        private IValueProvider<T> Value {get;}
+        public string Id { get; }
+        private string ValueName { get; }
+        private IValueProvider<T> Value { get; }
 
-        public CreateValNode(string id,string valueName, IValueProvider<T> value)
+        public CreateValNode(string id, string valueName, IValueProvider<T> value)
         {
             Id = id;
             ValueName = valueName;
@@ -20,8 +20,10 @@ namespace Modules
 
         public NodeExecutionResult Execute(IWorkflowContext context)
         {
+            var value = Value.GetValue(context);
 
-            context.Data[ValueName] = Value.GetValue(context);
+            if (value != null)
+                context.Data[ValueName] = value;
             return new NodeExecutionResult();
         }
 
