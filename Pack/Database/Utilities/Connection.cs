@@ -24,8 +24,8 @@ namespace Pack.Database.Utilities
                     {
                         context.Data[idNodeConnection] = true;
                     };
+                    return (true, "connected");
                 }
-                return (true, "connected");
             }
             catch (Exception ex)
             {

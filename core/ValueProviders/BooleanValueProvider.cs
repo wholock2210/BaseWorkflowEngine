@@ -30,7 +30,24 @@ namespace Core.ValueProviders
             {
                 result = Value;
             }
-            return Value;
+            return result;
+        }
+        public string ToString(IWorkflowContext context)
+        {
+            bool result = false;
+            if (!string.IsNullOrEmpty(Key))
+            {
+                Object rawValue = context.Data[Key];
+                if(rawValue is bool)
+                {
+                    result = (bool)rawValue;
+                }
+            }
+            else
+            {
+                result = Value;
+            }
+            return result.ToString();
         }
     }
 }

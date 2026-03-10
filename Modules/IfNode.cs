@@ -45,7 +45,7 @@ namespace Modules
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("│ Bool   : ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"{CONDITION.Left} [{CONDITION.Operator}] {CONDITION.Right}");
+            Console.WriteLine($"{CONDITION.Left.ToString(context)} [{CONDITION.Operator}] {CONDITION.Right.ToString(context)}");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("│ Result   : ");
             Console.ForegroundColor = ConsoleColor.Yellow;

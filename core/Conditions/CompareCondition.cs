@@ -1,3 +1,4 @@
+using System.Xml.Schema;
 using Core.Abstractions;
 
 namespace Core.Conditions
@@ -17,6 +18,7 @@ namespace Core.Conditions
             Right = right;
             Operator = op;
         }
+
 
         public bool Evaluate(IWorkflowContext context)
         {

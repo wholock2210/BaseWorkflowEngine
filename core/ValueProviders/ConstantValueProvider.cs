@@ -14,5 +14,9 @@ namespace Core.ValueProviders
         {
             return Value;
         }
+        public string ToString(IWorkflowContext context)
+        {
+            return Value.ToString();
+        }
     }
 }

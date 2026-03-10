@@ -16,5 +16,9 @@ namespace Core.ValueProviders
                 throw new Exception($"ValueIncreate [{context.Data[Key]}] is not a number");
             return value;
         }
+        public string ToString(IWorkflowContext context)
+        {
+            return context.Data[Key].ToString();
+        }
     }
 }
