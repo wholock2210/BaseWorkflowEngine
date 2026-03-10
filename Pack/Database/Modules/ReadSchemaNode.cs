@@ -7,6 +7,7 @@ using Pack.Database.Utilities;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Xml.Schema;
 
 namespace Pack.Database.Modules
 {
@@ -22,15 +23,21 @@ namespace Pack.Database.Modules
 
         public NodeExecutionResult Execute(IWorkflowContext context)
         {
-            string sql = "DESCRIBE OtoParking.AppUser";
+            string sql = "SHOW TABLES";
             using(var conn = new MySqlConnection(Connection.connectionString))
             {
-                var result = conn.Query(sql);
+                var tables = conn.Query(sql);
 
                 using(StreamWriter steam = new StreamWriter(GetPath()))
                 {
-                    
-                    string json = JsonSerializer.Serialize(result, new JsonSerializerOptions
+                    Dictionary<string, List<dynamic>> database = new Dictionary<string, List<dynamic>>();
+                    foreach(var table in tables)
+                    {
+                        string query = $"DESCRIBE {table.Tables_in_OtoParking}";
+                        var tableSchema = conn.Query(query).ToList();
+                        database.Add(table.Tables_in_OtoParking,tableSchema);
+                    }
+                    string json = JsonSerializer.Serialize(database, new JsonSerializerOptions
                     {
                         WriteIndented = true
                     });
